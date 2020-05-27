@@ -39,7 +39,7 @@ public class RecipeController {
                 "\t\t\t\"difficulty\": 2,\n" +
                 "\t\t\t\"cuisine\": \"Mexican\",\n" +
                 "\t\t\t\"image\": \"www.linktoimage.com/images/Mexican/huevos-rancheros.jpeg\",\n" +
-                "\t\t\t\"people\": \"2\"\n" +
+                "\t\t\t\"people\": 2\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"userId\": 1,\n" +
