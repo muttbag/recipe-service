@@ -2,12 +2,18 @@ package co.uk.recipe.group.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping//("/recipes")
 public class RecipeController {
+
+//    @PostMapping
+//    public Recipe addRecipe(){
+//
+//    }
 
     @GetMapping(value="/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
     public String test() {
@@ -38,7 +44,7 @@ public class RecipeController {
                 "\t\t\t\"timeToCook\": 0.5,\n" +
                 "\t\t\t\"difficulty\": 2,\n" +
                 "\t\t\t\"cuisine\": \"Mexican\",\n" +
-                "\t\t\t\"image\": \"www.linktoimage.com/images/Mexican/huevos-rancheros.jpeg\",\n" +
+                "\t\t\t\"image\": \"https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/huevos-rancheros.jpg\",\n" +
                 "\t\t\t\"people\": \"2\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
@@ -69,7 +75,7 @@ public class RecipeController {
                 "\t\t\t\"timeToCook\": 1.5,\n" +
                 "\t\t\t\"difficulty\": 3,\n" +
                 "\t\t\t\"cuisine\": \"English\",\n" +
-                "\t\t\t\"image\": \"www.linktoimage.com/images/english/chicken.jpeg\",\n" +
+                "\t\t\t\"image\": \"https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/shepherds-pie.jpg\",\n" +
                 "\t\t\t\"people\": \"5\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
@@ -94,7 +100,7 @@ public class RecipeController {
                 "\t\t\t\"timeToCook\": 3.5,\n" +
                 "\t\t\t\"difficulty\": 2,\n" +
                 "\t\t\t\"cuisine\": \"Chinese\",\n" +
-                "\t\t\t\"image\": \"www.linktoimage.com/images/Chinese/hotpot.jpeg\",\n" +
+                "\t\t\t\"image\": \"https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/beef-aubergine-hotpot.jpg\",\n" +
                 "\t\t\t\"people\": \"2\"\n" +
                 "\t\t}\n" +
                 "\t]\n" +
@@ -131,7 +137,7 @@ public class RecipeController {
                 "\t\"timeToCook\": 1.5,\n" +
                 "\t\"difficulty\": 3,\n" +
                 "\t\"cuisine\": \"English\",\n" +
-                "\t\"image\": \"www.linktoimage.com/images/english/chicken.jpeg\",\n" +
+                "\t\"image\": \"https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/shepherds-pie.jpg\",\n" +
                 "\t\"people\": \"5\"\n" +
                 "}";
     }
@@ -160,7 +166,7 @@ public class RecipeController {
                 "\t\"timeToCook\": 3.5,\n" +
                 "\t\"difficulty\": 2,\n" +
                 "\t\"cuisine\": \"Chinese\",\n" +
-                "\t\"image\": \"www.linktoimage.com/images/Chinese/hotpot.jpeg\",\n" +
+                "\t\"image\": \"https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/beef-aubergine-hotpot.jpg\",\n" +
                 "\t\"people\": \"2\"\n" +
                 "}";
     }
@@ -193,7 +199,7 @@ public class RecipeController {
                 "\t\"timeToCook\": 0.5,\n" +
                 "\t\"difficulty\": 2,\n" +
                 "\t\"cuisine\": \"Mexican\",\n" +
-                "\t\"image\": \"www.linktoimage.com/images/Mexican/huevos-rancheros.jpeg\",\n" +
+                "\t\"image\": \"https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/huevos-rancheros.jpg\",\n" +
                 "\t\"people\": \"2\"\n" +
                 "}";
     }
