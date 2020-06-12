@@ -1,21 +1,39 @@
 package co.uk.recipe.group.controller;
 
+import co.uk.recipe.group.domain.Recipe;
+import co.uk.recipe.group.message.CreateRecipeRequest;
+import co.uk.recipe.group.service.RecipeService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
-@RequestMapping//("/recipes")
+@RequestMapping("/recipes")
 public class RecipeController {
 
-//    @PostMapping
-//    public Recipe addRecipe(){
-//
-//    }
+    @Autowired
+    RecipeService recipeService;
 
-    @GetMapping(value="/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
+
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Recipe addRecipe(@Valid @RequestBody CreateRecipeRequest createRecipe) {
+
+        Recipe recipe = new Recipe();
+        BeanUtils.copyProperties(createRecipe, recipe);
+
+        recipeService.addRecipe(recipe);
+
+        Recipe result = recipeService.getRecipe("7ec488b0-16c9-49e4-9da2-ef3a0e042e6d");
+
+
+        return recipe;
+    }
+
+    @GetMapping(value = "/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
     public String test() {
         return "{\n" +
                 "\t\"recipes\": [{\n" +

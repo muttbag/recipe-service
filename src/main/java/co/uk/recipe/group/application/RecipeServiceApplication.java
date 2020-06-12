@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("co.uk.recipe.group.controller")
+@ComponentScan("co.uk.recipe.group.*")
 public class RecipeServiceApplication {
 
 	public static void main(String[] args) {
