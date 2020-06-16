@@ -1,5 +1,7 @@
 package co.uk.recipe.group.message;
 
+import co.uk.recipe.group.domain.Difficulty;
+
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +24,7 @@ public class CreateRecipeRequest {
     private Integer timeToCook;
 
     //Change to String, ENUM easy, medium and hard
-    @Min(value = 1, message = "Minimum difficulty of 1 required")
-    @Max(value = 3, message = "Maximum difficulty of 3 required")
-    private Integer difficulty;
+    private Difficulty difficulty;
 
     @NotNull(message = "cuisine type is required")
     private String cuisine;
@@ -75,11 +75,11 @@ public class CreateRecipeRequest {
         this.timeToCook = timeToCook;
     }
 
-    public Integer getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Integer difficulty) {
+    public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 

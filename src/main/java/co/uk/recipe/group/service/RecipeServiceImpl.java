@@ -5,6 +5,9 @@ import co.uk.recipe.group.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
@@ -17,8 +20,14 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
-    public Recipe getRecipe(String recipeId) {
-        return recipesRepository.findById(recipeId).get();
+    public Optional<Recipe> getRecipe(UUID recipeId) {
+        return recipesRepository.findById(recipeId.toString());
     }
+
+    @Override
+    public Iterable<Recipe> getAllRecipes() {
+        return recipesRepository.findAll();
+    }
+
 
 }

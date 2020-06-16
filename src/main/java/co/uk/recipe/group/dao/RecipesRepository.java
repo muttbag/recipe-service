@@ -14,4 +14,7 @@ public interface RecipesRepository extends CrudRepository<Recipe, String> {
 
     @Override
     <S extends Recipe> S save(S s);
+
+    @Override
+    Iterable<Recipe> findAll();
 }

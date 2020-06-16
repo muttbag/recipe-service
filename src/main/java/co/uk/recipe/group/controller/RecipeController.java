@@ -1,6 +1,7 @@
 package co.uk.recipe.group.controller;
 
 import co.uk.recipe.group.domain.Recipe;
+import co.uk.recipe.group.error.RecipeNotFoundException;
 import co.uk.recipe.group.message.CreateRecipeRequest;
 import co.uk.recipe.group.service.RecipeService;
 import org.springframework.beans.BeanUtils;
@@ -9,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/recipes")
@@ -17,23 +20,32 @@ public class RecipeController {
     @Autowired
     RecipeService recipeService;
 
-
-
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe addRecipe(@Valid @RequestBody CreateRecipeRequest createRecipe) {
 
-        Recipe recipe = new Recipe();
+        //Needs the ability to add image and upload to S3 bucket.
+        final Recipe recipe = new Recipe();
+
         BeanUtils.copyProperties(createRecipe, recipe);
 
-        recipeService.addRecipe(recipe);
-
-        Recipe result = recipeService.getRecipe("7ec488b0-16c9-49e4-9da2-ef3a0e042e6d");
-
-
-        return recipe;
+        return recipeService.addRecipe(recipe);
     }
 
-    @GetMapping(value = "/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{recipeId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Recipe getRecipe(@PathVariable @NotNull final UUID recipeId) {
+
+        final Recipe result = recipeService.getRecipe(recipeId).orElseThrow(() -> new RecipeNotFoundException("Unable to find any recipes with id: " + recipeId.toString()));
+
+        return result;
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Recipe> getAllRecipes() {
+        return recipeService.getAllRecipes();
+    }
+
+
+    @GetMapping(value = "/old", produces = MediaType.APPLICATION_JSON_VALUE)
     public String test() {
         return "{\n" +
                 "\t\"recipes\": [{\n" +
@@ -125,7 +137,7 @@ public class RecipeController {
                 "}";
     }
 
-    @GetMapping(value = "/recipes/1", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/old/1", produces = MediaType.APPLICATION_JSON_VALUE)
     public String test1() {
         return "{\n" +
                 "\t\"userId\": 1,\n" +
@@ -160,7 +172,7 @@ public class RecipeController {
                 "}";
     }
 
-    @GetMapping(value = "/recipes/2", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/old/2", produces = MediaType.APPLICATION_JSON_VALUE)
     public String test2() {
         return "{\n" +
                 "\t\"userId\": 1,\n" +
@@ -189,7 +201,7 @@ public class RecipeController {
                 "}";
     }
 
-    @GetMapping(value = "/recipes/3", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/old/3", produces = MediaType.APPLICATION_JSON_VALUE)
     public String test3() {
         return "{\n" +
                 "\t\"userId\": 2,\n" +
