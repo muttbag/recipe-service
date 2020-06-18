@@ -33,4 +33,4 @@ build/
 .mvn
 
 ### AWS keys ###
-src/main/resources/application.properties
+*.properties
