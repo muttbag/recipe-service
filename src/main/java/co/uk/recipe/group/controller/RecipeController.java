@@ -4,10 +4,12 @@ import co.uk.recipe.group.domain.Recipe;
 import co.uk.recipe.group.error.RecipeNotFoundException;
 import co.uk.recipe.group.message.CreateRecipeRequest;
 import co.uk.recipe.group.service.RecipeService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -20,8 +22,21 @@ public class RecipeController {
     @Autowired
     RecipeService recipeService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Recipe addRecipe(@Valid @RequestBody CreateRecipeRequest createRecipe) {
+//    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Recipe addRecipe(@Valid @RequestBody CreateRecipeRequest createRecipe) {
+//
+//        //Needs the ability to add image and upload to S3 bucket.
+//        final Recipe recipe = new Recipe();
+//
+//        BeanUtils.copyProperties(createRecipe, recipe);
+//
+//        return recipeService.addRecipe(recipe);
+//    }
+
+//    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = "multipart/form-data")
+//    public Recipe addRecipeWithFile(@ModelAttribute FormWrapper model) {
+    @RequestMapping( method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Recipe addRecipeWithFile(@RequestPart("recipe") @Valid  CreateRecipeRequest createRecipe, @RequestPart("image") MultipartFile multipartFile) {
 
         //Needs the ability to add image and upload to S3 bucket.
         final Recipe recipe = new Recipe();

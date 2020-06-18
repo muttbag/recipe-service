@@ -31,3 +31,6 @@ build/
 .vscode/
 
 .mvn
+
+### AWS keys ###
+src/main/resources/application.properties

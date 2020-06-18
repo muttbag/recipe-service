@@ -28,6 +28,4 @@ public class RecipeServiceImpl implements RecipeService{
     public Iterable<Recipe> getAllRecipes() {
         return recipesRepository.findAll();
     }
-
-
 }
