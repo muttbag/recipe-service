@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -21,6 +22,8 @@ public class RecipeController {
 
     @Autowired
     RecipeService recipeService;
+
+    //TODO: Add PUT for updating recipe
 
 //    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 //    public Recipe addRecipe(@Valid @RequestBody CreateRecipeRequest createRecipe) {
@@ -36,14 +39,14 @@ public class RecipeController {
 //    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = "multipart/form-data")
 //    public Recipe addRecipeWithFile(@ModelAttribute FormWrapper model) {
     @RequestMapping( method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Recipe addRecipeWithFile(@RequestPart("recipe") @Valid  CreateRecipeRequest createRecipe, @RequestPart("image") MultipartFile multipartFile) {
+    public Recipe addRecipeWithFile(@RequestPart("recipe") @Valid  CreateRecipeRequest createRecipe, @RequestPart("image") MultipartFile multipartFile) throws IOException {
 
         //Needs the ability to add image and upload to S3 bucket.
         final Recipe recipe = new Recipe();
 
         BeanUtils.copyProperties(createRecipe, recipe);
 
-        return recipeService.addRecipe(recipe);
+        return recipeService.addRecipe(recipe, multipartFile);
     }
 
     @GetMapping(value = "/{recipeId}", produces = MediaType.APPLICATION_JSON_VALUE)

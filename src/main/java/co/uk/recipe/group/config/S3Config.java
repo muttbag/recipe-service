@@ -19,10 +19,10 @@ public class S3Config {
     private String awsKeySecret;
 
     @Value("${aws.region}")
-    private String awsRegion;
+    private String  awsRegion;
 
     @Value("${aws.s3.bucket}")
-    private String awsS3AudioBucket;
+    private String awsS3Bucket;
 
     @Bean(name = "awsKeyId")
     public String getAWSKeyId() {
@@ -45,8 +45,8 @@ public class S3Config {
         return new AWSStaticCredentialsProvider(awsCredentials);
     }
 
-    @Bean(name = "awsS3AudioBucket")
-    public String getAWSS3AudioBucket() {
-        return awsS3AudioBucket;
+    @Bean(name = "s3Bucket")
+    public String getAWSs3Bucket() {
+        return awsS3Bucket;
     }
 }

@@ -2,8 +2,10 @@ package co.uk.recipe.group.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 public interface ImageService {
 
-    void uploadImageToBucket(MultipartFile multipartFile, boolean enablePublicReadAccess);
+    String uploadImageToBucket(MultipartFile multipartFile) throws IOException;
 
 }
