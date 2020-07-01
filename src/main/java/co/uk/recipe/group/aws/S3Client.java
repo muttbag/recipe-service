@@ -3,10 +3,7 @@ package co.uk.recipe.group.aws;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.services.s3.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +36,9 @@ public class S3Client {
         //TODO: Constructing the image url based on success and filename, is it returned when created in anyway?
         //TODO: Logic for if the upload was successful then return url otherwise exception
         return "https://" + s3Bucket +".s3." + amazonS3.getRegion().toString() + ".amazonaws.com/" + file.getName();
+    }
 
+    public void removeImageFromBucket(final String key){
+        amazonS3.deleteObject(s3Bucket, key);
     }
 }

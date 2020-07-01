@@ -32,4 +32,14 @@ public class ImageServiceImpl implements ImageService {
 
         return imageUrl;
     }
+
+    @Override
+    public Boolean removeImageFromBucket(final String url) {
+
+        https://recipe-bucket-09062020.s3.eu-west-2.amazonaws.com/huevos-rancheros.jpg
+
+        url
+
+        s3Client.removeImageFromBucket()
+    }
 }

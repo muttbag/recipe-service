@@ -17,4 +17,7 @@ public interface RecipesRepository extends CrudRepository<Recipe, String> {
 
     @Override
     Iterable<Recipe> findAll();
+
+    @Override
+    void deleteById(String s);
 }

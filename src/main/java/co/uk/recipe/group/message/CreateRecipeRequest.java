@@ -29,7 +29,7 @@ public class CreateRecipeRequest {
     @NotNull(message = "cuisine type is required")
     private String cuisine;
 
-    @NotNull(message = "URL to finished image of the meal is required")
+    @NotBlank(message = "URL to finished image of the meal is required")
     private String image;
 
     @Min(value = 1, message = "Number of people the meal is for required")

@@ -14,4 +14,8 @@ public interface RecipeService {
 
     Iterable<Recipe> getAllRecipes();
 
+    Recipe updateRecipe(UUID recipeId, Recipe recipe);
+
+    void deleteRecipe(UUID recipeId);
+
 }

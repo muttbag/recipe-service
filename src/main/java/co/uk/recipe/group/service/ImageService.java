@@ -8,4 +8,6 @@ public interface ImageService {
 
     String uploadImageToBucket(MultipartFile multipartFile) throws IOException;
 
+    //TODO: Should be URI/URL instead of String?
+    Boolean removeImageFromBucket(String url);
 }
